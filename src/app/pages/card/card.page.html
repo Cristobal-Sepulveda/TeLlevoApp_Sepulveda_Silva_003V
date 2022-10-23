@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="start" name="menu-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+    <ion-title>card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+      <ion-card-title>Awesome Title</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p class="parrafo">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. At eius sint corporis molestias modi corrupti laudantium cupiditate perspiciatis quibusdam libero eveniet nulla minus consequatur, odit ducimus, quidem mollitia ad. Dignissimos.
+      </p>
+    </ion-card-content>
+   </ion-card>
+
+   <ion-card>
+    <ion-item href="#">
+      <ion-icon slot="start" name="wifi" color="primary"></ion-icon>
+      <ion-label class="wifi">Item 1 Wifi</ion-label>
+    </ion-item>
+
+    <ion-item href="#">
+      <ion-icon slot="start" name="walk" color="secondary"></ion-icon>
+      <ion-label class="walk">Item 2 Walk</ion-label>
+    </ion-item>
+
+    <ion-item href="#" detail=false>
+      <ion-icon slot="start" name="warning" color="danger"></ion-icon>
+      <ion-label class="warning">Item 3 Warning</ion-label>
+    </ion-item>
+
+    <ion-item href="#" detail=false>
+      <ion-icon slot="start" name="pin"></ion-icon>
+      <ion-label>Awesome Label</ion-label>
+      <ion-button fill="outline" slot="end" shape="round" routerLink="/alert">
+        View Alert
+      </ion-button>
+    </ion-item>
+   </ion-card>
+
+   <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+      <ion-card-title>Awesome Title</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere sequi nostrum, aperiam, tenetur itaque ducimus possimus alias quidem voluptas est nihil ad rerum perspiciatis magnam voluptatum delectus necessitatibus at pariatur?</p>
+      
+      <icon-card>
+        <img src="assets/cachorro.jpg" class="ion-padding">
+      </icon-card>
+   
+    </ion-card-content>
+   </ion-card>
+
+
+
+
+</ion-content>

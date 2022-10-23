@@ -1,0 +1,27 @@
+<ion-app class="AppContainer">
+  <ion-menu class="TopBar" contentId="main" menuId="first" side="start">
+    <ion-content>
+      <ion-header>
+        <ion-toolbar class="Toolbar">
+          <ion-title class="ion-text-center" color="warning"
+            >Funciones</ion-title
+          >
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-list>
+        <ion-menu-toggle *ngFor="let c of componentes">
+          <ion-item [routerLink]="c.redirecTo" detail="true">
+            <ion-icon slot="start" [name]="c.icon" color="primary"></ion-icon>
+            <ion-text color="warning">
+              {{ c.name }}
+            </ion-text>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
+<!-- <h></h> -->

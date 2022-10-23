@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="start" name="menu-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+    <!-- <ion-buttons slot="start">
+      <ion-back-button 
+        defaultHref="/"
+        text="Back"
+        color="primary"
+        mode="ios"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title>alert</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button (click)="Saludo()" expand="full" fill="outline" shape="round">
+    Saludo
+  </ion-button>
+
+  <ion-button (click)="Confirma()" expand="full" fill="outline" shape="round">
+   Confirma?
+  </ion-button>
+
+  <p>{{ handlerMessage }}</p>
+  <p>{{ roleMessage }}</p>
+
+  <ion-button (click)="Inputs()" expand="full" fill="outline" shape="round">
+    Ingrese sus datos
+  </ion-button>
+
+
+</ion-content>

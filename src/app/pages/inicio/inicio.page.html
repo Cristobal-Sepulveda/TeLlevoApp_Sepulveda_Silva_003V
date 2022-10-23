@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar style="--background: #012c56">
+    <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="start" name="menu-outline" color="warning"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" style="color: lightgray"
+      >Inicio</ion-title
+    >
+    <!-- <ion-button id="open-modal" expand="block">Open</ion-button> -->
+    <ion-buttons slot="end">
+      <ion-button color="warning">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--
+  <ion-button routerLink="/alert">
+    Alert
+  </ion-button>
+
+  <ion-button routerLink="/action-sheet">
+    Action Sheet
+  </ion-button>-->
+  <div id="map"></div>
+  <ion-tabs>
+    <ion-tab-bar
+      slot="bottom"
+      style="border-radius: 5px; --background: #012c56; padding-bottom: 5px"
+    >
+      <ion-tab-button tab="card">
+        <ion-icon name="calendar" color="warning"></ion-icon>
+        <ion-label color="warning">Agendar</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="action-sheet">
+        <ion-icon name="notifications" color="warning"></ion-icon>
+        <ion-label color="warning">Notificaciones</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click)="setOpen(true)">
+        <ion-icon name="person" color="warning"></ion-icon>
+        <ion-label color="warning">Perfil</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <ion-modal
+    id="PerfilModal"
+    [isOpen]="isModalOpen"
+    backdrop-breakpoint="1"
+    backdrop-dismiss="true"
+    class="ion-padding"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar style="--background: #012c56">
+          <ion-buttons slot="start">
+            <ion-button color="warning" (click)="setOpen(false)">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <img src="../../../assets/logo-duoc.svg" />
+          <ion-buttons slot="end">
+            <ion-button color="warning" (click)="logout()">
+              <ion-icon slot="icon-only" name="log-out"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content style="--background: lightgray"> </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
