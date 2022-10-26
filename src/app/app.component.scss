@@ -1,3 +1,17 @@
 .Toolbar {
   --background: "red";
 }
+ion-item::part(detail-icon) {
+  color: #ffc900;
+  opacity: 1;
+  font-size: 20px;
+}
+#parrafo {
+  text-align: center;
+}
+#PerfilModal {
+  padding: 30px;
+  --border-radius: 10px;
+  height: 60%;
+  margin-top: 25%;
+}

@@ -1,31 +1,21 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="mostrarMenu()">
         <ion-icon slot="start" name="menu-outline" color="primary"></ion-icon>
       </ion-button>
     </ion-buttons>
-
-
-    <!-- <ion-buttons slot="start">
-      <ion-back-button 
-        defaultHref="/"
-        text="Back"
-        color="primary"
-        mode="ios"></ion-back-button>
-    </ion-buttons> -->
     <ion-title>alert</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-button (click)="Saludo()" expand="full" fill="outline" shape="round">
     Saludo
   </ion-button>
 
   <ion-button (click)="Confirma()" expand="full" fill="outline" shape="round">
-   Confirma?
+    Confirma?
   </ion-button>
 
   <p>{{ handlerMessage }}</p>
@@ -34,6 +24,38 @@
   <ion-button (click)="Inputs()" expand="full" fill="outline" shape="round">
     Ingrese sus datos
   </ion-button>
+</ion-content> -->
 
+<ion-header>
+  <ion-toolbar style="--background: #012c56">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        text=""
+        color="warning"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" style="color: lightgray"
+      >Registrarse como conductor</ion-title
+    >
+    <!-- <ion-button id="open-modal" expand="block">Open</ion-button> -->
+    <ion-buttons slot="end">
+      <ion-button color="warning">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content>
+  <ion-item>
+    <ion-label>Mascota: </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Raza: </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Edad: </ion-label>
+  </ion-item>
+  <ion-button (click)="showToast()" expand="block">Agregar Datos </ion-button>
 </ion-content>
