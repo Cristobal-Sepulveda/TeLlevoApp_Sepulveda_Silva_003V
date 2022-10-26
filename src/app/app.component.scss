@@ -9,9 +9,8 @@ ion-item::part(detail-icon) {
 #parrafo {
   text-align: center;
 }
+
 #PerfilModal {
-  padding: 30px;
   --border-radius: 10px;
-  height: 60%;
-  margin-top: 25%;
+  --max-height: 69%;
 }
