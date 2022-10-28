@@ -1,11 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { MenuController } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
-import { AuthService } from '../../services/auth.service';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { Geolocation } from '@capacitor/geolocation';
-import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -14,22 +9,11 @@ import { IonModal } from '@ionic/angular';
 })
 export class InicioPage implements OnInit {
   profile = null;
-  constructor(
-    private menuController: MenuController,
-    private authService: AuthService,
-    private router: Router,
-    private loadingController: LoadingController,
-    private alertController: AlertController
-  ) {}
+  constructor() {}
 
   @ViewChild('map') mapView: ElementRef;
-  @ViewChild(IonModal) modal: IonModal;
   ionViewDidEnter() {
     this.createMap();
-  }
-
-  mostrarMenu() {
-    this.menuController.open('first');
   }
 
   createMap() {
@@ -46,7 +30,7 @@ export class InicioPage implements OnInit {
 
     CapacitorGoogleMaps.addListener('onMapReady', async () => {
       CapacitorGoogleMaps.setMapType({
-        type: 'normal', // hybrid, satellite, terrain
+        type: 'satellite', // hybrid, normal, terrain
       });
 
       this.showCurrentPosition();
@@ -59,17 +43,6 @@ export class InicioPage implements OnInit {
 
   ionViewDidLeave() {
     CapacitorGoogleMaps.close();
-  }
-  async logout() {
-    this.isModalOpen = false;
-    await this.authService.logout();
-    this.router.navigateByUrl('/', { replaceUrl: true });
-  }
-
-  isModalOpen = false;
-
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
   }
 
   ngOnInit() {}

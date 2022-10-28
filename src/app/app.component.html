@@ -1,6 +1,6 @@
 <ion-app class="AppContainer">
   <ion-router-outlet id="main"></ion-router-outlet>
-  <ion-tabs>
+  <ion-tabs *ngIf="showTabs">
     <ion-tab-bar
       slot="bottom"
       style="border-radius: 5px; --background: #012c56"

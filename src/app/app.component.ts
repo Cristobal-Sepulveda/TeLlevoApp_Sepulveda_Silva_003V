@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { IonModal } from '@ionic/angular';
+import { IonModal, IonTabBar } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -67,55 +67,23 @@ export class AppComponent {
       redirecTo: '/card',
     },
   ];
-  @ViewChild('map') mapView: ElementRef;
+
   @ViewChild(IonModal) modal: IonModal;
+  @ViewChild(IonTabBar) tabbar: IonTabBar;
   isModalOpen = false;
+  showTabs = false;
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
-  }
-
-  ionViewDidEnter() {
-    this.createMap();
   }
 
   mostrarMenu() {
     this.menuController.open('first');
   }
 
-  createMap() {
-    const boundingRect =
-      this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
-
-    CapacitorGoogleMaps.create({
-      width: Math.round(boundingRect.width),
-      height: Math.round(boundingRect.height),
-      x: Math.round(boundingRect.x),
-      y: Math.round(boundingRect.y),
-      zoom: 5,
-    });
-
-    CapacitorGoogleMaps.addListener('onMapReady', async () => {
-      CapacitorGoogleMaps.setMapType({
-        type: 'normal', // hybrid, satellite, terrain
-      });
-
-      this.showCurrentPosition();
-    });
-  }
-
-  async showCurrentPosition() {
-    // todo
-  }
-
-  ionViewDidLeave() {
-    CapacitorGoogleMaps.close();
-  }
-
   async logout() {
-    this.isModalOpen = false;
     await this.authService.logout();
-    this.router.navigateByUrl('/', { replaceUrl: true });
+    this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
   enterAnimation = (baseEl: HTMLElement) => {
@@ -146,7 +114,5 @@ export class AppComponent {
     return this.enterAnimation(baseEl).direction('reverse');
   };
 
-  ngOnInit() {
-    this.isModalOpen = true;
-  }
+  ngOnInit() {}
 }
