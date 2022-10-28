@@ -9,7 +9,13 @@ export interface Datos {
   modified: number;
 }
 
+export interface Usuario {
+  user: string;
+  modified: number;
+}
+
 const ITEMS_KEY = 'my-datos';
+const USERS_KEYS = 'users-keys';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +30,37 @@ export class ServicedatosService {
   async init() {
     const storage = await this.storage.create();
     this._storage = storage;
+  }
+
+  async addUsuario(usuario: Usuario): Promise<any> {
+    return this.storage.get(USERS_KEYS).then((usuarios: Usuario[]) => {
+      if (usuarios) {
+        usuarios.push(usuario);
+        return this.storage.set(USERS_KEYS, usuarios);
+      } else {
+        return this.storage.set(USERS_KEYS, [usuario]);
+      }
+    });
+  }
+  async updateUsuario(usuario: Usuario): Promise<any> {
+    return this.storage.get(USERS_KEYS).then((usuarios: Usuario[]) => {
+      if (!usuarios || usuarios.length === 0) {
+        return null;
+      }
+      let newUsuario: Usuario[] = [];
+      for (let i of usuarios) {
+        if (i.user === usuario.user) {
+          newUsuario.push(usuario);
+        } else {
+          newUsuario.push(i);
+        }
+      }
+      return this.storage.set(USERS_KEYS, newUsuario);
+    });
+  }
+
+  getUsuarios(): Promise<Usuario[]> {
+    return this.storage.get(USERS_KEYS);
   }
 
   async addDatos(dato: Datos): Promise<any> {

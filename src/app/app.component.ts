@@ -7,11 +7,7 @@ import { AuthService } from './services/auth.service';
 import { IonModal, IonTabBar } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
 import { AnimationController } from '@ionic/angular';
-import { IonicStorageModule } from '@ionic/storage-angular';
-import { Drivers } from '@ionic/storage';
 
 interface Componente {
   icon: string;
@@ -23,20 +19,6 @@ interface Componente {
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-})
-@NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-    IonicStorageModule.forRoot({
-      name: 'mydb',
-      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage],
-    }),
-  ],
 })
 export class AppComponent {
   constructor(
@@ -83,7 +65,8 @@ export class AppComponent {
 
   async logout() {
     await this.authService.logout();
-    this.router.navigateByUrl('/login', { replaceUrl: true });
+    this.isModalOpen = false;
+    this.router.navigateByUrl('/', { replaceUrl: true });
   }
 
   enterAnimation = (baseEl: HTMLElement) => {

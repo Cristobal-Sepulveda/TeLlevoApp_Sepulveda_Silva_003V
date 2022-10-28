@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { AppComponent } from 'src/app/app.component';
+import {
+  ServicedatosService,
+  Usuario,
+} from 'src/app/services/servicesdatos.service';
 
 @Component({
   selector: 'app-login',
@@ -12,32 +16,35 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class LoginPage implements OnInit {
   credentials: FormGroup;
-
+  newUsuario: Usuario = <Usuario>{};
   constructor(
     private fb: FormBuilder,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private authService: AuthService,
     private router: Router,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private storageService: ServicedatosService
   ) {}
 
-  // Easy access for form fields
+  addUsuario() {
+    this.newUsuario.modified = Date.now();
+    this.newUsuario.user = this.credentials.value;
+    this.storageService.addUsuario(this.newUsuario);
+  }
+
+  updateUsuario(usuario: Usuario) {
+    usuario.user = `UPDATED: ${usuario.user}`;
+    usuario.modified = Date.now();
+    this.storageService.updateUsuario(usuario);
+  }
+
   get email() {
     return this.credentials.get('email');
   }
 
   get password() {
     return this.credentials.get('password');
-  }
-
-  ngOnInit() {
-    this.credentials = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-    this.appComponent.isModalOpen = false;
-    this.appComponent.showTabs = false;
   }
 
   async register() {
@@ -63,6 +70,7 @@ export class LoginPage implements OnInit {
 
     if (user) {
       this.router.navigateByUrl('/inicio', { replaceUrl: true });
+      this.addUsuario();
       this.appComponent.showTabs = true;
     } else {
       this.showAlert('Login failed', 'Please try again!');
@@ -76,5 +84,12 @@ export class LoginPage implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  ngOnInit() {
+    this.credentials = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 }
