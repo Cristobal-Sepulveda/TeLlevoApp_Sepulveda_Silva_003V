@@ -1,4 +1,10 @@
-import { Component, NgModule, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  NgModule,
+  ElementRef,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,11 +31,12 @@ export class AppComponent {
     private authService: AuthService,
     private menuController: MenuController,
     private router: Router,
-    private animationCtrl: AnimationController
+    private animationCtrl: AnimationController,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
-    CapacitorGoogleMaps.initialize({
-      key: environment.mapsKey,
-    });
+    // CapacitorGoogleMaps.initialize({
+    //   key: environment.mapsKey,
+    // });
   }
 
   componentes: Componente[] = [
@@ -64,9 +71,15 @@ export class AppComponent {
   }
 
   async logout() {
-    await this.authService.logout();
-    this.isModalOpen = false;
-    this.router.navigateByUrl('/', { replaceUrl: true });
+    try {
+      console.log('hola');
+      this.isModalOpen = false;
+      // this.showTabs = false;
+      await this.authService.logout();
+      this.router.navigateByUrl('', { replaceUrl: true });
+    } catch (e) {
+      console.log(e.message);
+    }
   }
 
   enterAnimation = (baseEl: HTMLElement) => {
@@ -97,5 +110,7 @@ export class AppComponent {
     return this.enterAnimation(baseEl).direction('reverse');
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('APP');
+  }
 }

@@ -27,6 +27,8 @@ export class LoginPage implements OnInit {
     private storageService: ServicedatosService
   ) {}
 
+  showLoginForm = true;
+
   addUsuario() {
     this.newUsuario.modified = Date.now();
     this.newUsuario.user = this.credentials.value;
@@ -47,13 +49,15 @@ export class LoginPage implements OnInit {
     return this.credentials.get('password');
   }
 
+  mostrarFormularioCrearCuenta = () => {
+    this.showLoginForm = false;
+  };
+
   async register() {
     const loading = await this.loadingController.create();
     await loading.present();
-
     const user = await this.authService.register(this.credentials.value);
     await loading.dismiss();
-
     if (user) {
       this.router.navigateByUrl('/inicio', { replaceUrl: true });
     } else {
@@ -71,7 +75,6 @@ export class LoginPage implements OnInit {
     if (user) {
       this.router.navigateByUrl('/inicio', { replaceUrl: true });
       this.addUsuario();
-      this.appComponent.showTabs = true;
     } else {
       this.showAlert('Login failed', 'Please try again!');
     }
@@ -87,6 +90,8 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('login');
+    this.appComponent.showTabs = false;
     this.credentials = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],

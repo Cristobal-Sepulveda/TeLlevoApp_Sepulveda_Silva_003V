@@ -10,7 +10,7 @@ import {
   ServicedatosService,
   Usuario,
 } from 'src/app/services/servicesdatos.service';
-
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -21,39 +21,40 @@ export class InicioPage implements OnInit {
   newUsuario: Usuario = <Usuario>{};
   constructor(
     private menuController: MenuController,
-    private storageService: ServicedatosService
+    private storageService: ServicedatosService,
+    private appComponent: AppComponent
   ) {}
 
   @ViewChild('map') mapView: ElementRef;
   @ViewChild(IonModal) modal: IonModal;
-  ionViewDidEnter() {
-    this.createMap();
-  }
+  // ionViewDidEnter() {
+  //   this.createMap();
+  // }
 
   mostrarMenu() {
     this.menuController.open('first');
   }
 
-  createMap() {
-    const boundingRect =
-      this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+  // createMap() {
+  //   const boundingRect =
+  //     this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
 
-    CapacitorGoogleMaps.create({
-      width: Math.round(boundingRect.width),
-      height: Math.round(boundingRect.height),
-      x: Math.round(boundingRect.x),
-      y: Math.round(boundingRect.y),
-      zoom: 5,
-    });
+  //   CapacitorGoogleMaps.create({
+  //     width: Math.round(boundingRect.width),
+  //     height: Math.round(boundingRect.height),
+  //     x: Math.round(boundingRect.x),
+  //     y: Math.round(boundingRect.y),
+  //     zoom: 5,
+  //   });
 
-    CapacitorGoogleMaps.addListener('onMapReady', async () => {
-      CapacitorGoogleMaps.setMapType({
-        type: 'normal', // hybrid, satellite, terrain
-      });
+  //   CapacitorGoogleMaps.addListener('onMapReady', async () => {
+  //     CapacitorGoogleMaps.setMapType({
+  //       type: 'normal', // hybrid, satellite, terrain
+  //     });
 
-      this.showCurrentPosition();
-    });
-  }
+  //     this.showCurrentPosition();
+  //   });
+  // }
 
   async showCurrentPosition() {
     // todo
@@ -62,8 +63,14 @@ export class InicioPage implements OnInit {
   ionViewDidLeave() {
     CapacitorGoogleMaps.close();
   }
+  onClick = () => {
+    let Usuarios = this.storageService.getUsuarios().then((res) => {
+      console.log(res[0]);
+      this.profile = res;
+    });
+  };
 
   ngOnInit() {
-    this.profile = this.storageService.getUsuarios;
+    this.appComponent.showTabs = true;
   }
 }

@@ -59,8 +59,9 @@ export class ServicedatosService {
     });
   }
 
-  getUsuarios(): Promise<Usuario[]> {
-    return this.storage.get(USERS_KEYS);
+  async getUsuarios(): Promise<Usuario[]> {
+    const users = await this.storage.get(USERS_KEYS);
+    return users;
   }
 
   async addDatos(dato: Datos): Promise<any> {

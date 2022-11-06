@@ -8,10 +8,15 @@
     #eeca06,
     yellow
   );
-  z-index: 1000;
 }
-#LoginForm {
-  padding: 40% 30px;
+.LoginRegisterForm {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#LoginTitle {
+  padding-top: 40%;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 #FormTitle {
   text-align: center;
