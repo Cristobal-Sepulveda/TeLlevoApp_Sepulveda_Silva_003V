@@ -17,9 +17,10 @@
 </ion-header>
 
 <ion-content style="--background: white">
-  <h1 class="ion-text-center">Bienvenido {{profile}}</h1>
-  <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
-    Click me
-  </ion-button>
+  <div *ngIf="showRealScreen;then content else other_content"></div>
+  <ng-template #content>
+    <h1 class="ion-text-center">Bienvenido {{username}}</h1>
+  </ng-template>
+  <ng-template #otherContent>other_content</ng-template>
   <!-- <div id="map"></div> -->
 </ion-content>

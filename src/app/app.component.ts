@@ -1,18 +1,8 @@
-import {
-  Component,
-  NgModule,
-  ElementRef,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
-import { environment } from '../environments/environment';
-import { BrowserModule } from '@angular/platform-browser';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { IonModal, IonTabBar } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
 
 interface Componente {
@@ -31,8 +21,7 @@ export class AppComponent {
     private authService: AuthService,
     private menuController: MenuController,
     private router: Router,
-    private animationCtrl: AnimationController,
-    private changeDetectorRef: ChangeDetectorRef
+    private animationCtrl: AnimationController
   ) {
     // CapacitorGoogleMaps.initialize({
     //   key: environment.mapsKey,
@@ -110,7 +99,5 @@ export class AppComponent {
     return this.enterAnimation(baseEl).direction('reverse');
   };
 
-  ngOnInit() {
-    console.log('APP');
-  }
+  ngOnInit() {}
 }

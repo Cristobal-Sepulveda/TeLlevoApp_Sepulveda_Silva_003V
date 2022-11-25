@@ -8,13 +8,13 @@
         <h2 id="FormTitle" style="color: lightgray">¡TeLlevoApp!</h2>
       </div>
     </div>
-    <div *ngIf="showLoginForm;then content else other_content"></div>
-    <ng-template #content>
-      <form
-        class="LoginRegisterForm"
-        (ngSubmit)="login()"
-        [formGroup]="credentials"
-      >
+    <form
+      class="LoginRegisterForm"
+      (ngSubmit)="login()"
+      [formGroup]="credentials"
+    >
+      <div *ngIf="showLoginForm;then content else other_content"></div>
+      <ng-template #content>
         <ion-item fill="solid" class="ion-margin-bottom">
           <ion-input
             type="email"
@@ -39,30 +39,22 @@
             >Tu contraseña debe tener mas de 6 caracteres</ion-note
           >
         </ion-item>
-
-        <ion-button type="submit" expand="block" [disabled]="!credentials.valid"
-          >Iniciar Sesión</ion-button
-        >
-        <ion-button
-          type="button"
-          expand="block"
-          color="secondary"
-          (click)="mostrarFormularioCrearCuenta()"
-          >Crear Cuenta</ion-button
-        >
-      </form>
-    </ng-template>
-    <ng-template #other_content>
-      <form
-        class="LoginRegisterForm"
-        (ngSubmit)="login()"
-        [formGroup]="credentials"
-      >
+        <div class="FilaDeBotones">
+          <ion-button type="submit">Iniciar Sesión</ion-button>
+          <ion-button
+            type="button"
+            color="secondary"
+            (click)="mostrarFormularioCrearCuenta()"
+            >Registrarse</ion-button
+          >
+        </div>
+      </ng-template>
+      <ng-template #other_content>
         <ion-item fill="solid" class="ion-margin-bottom">
           <ion-input
             type="text"
             placeholder="Nombre y Apellido"
-            formControlName="nomap"
+            formControlName="nombre"
           ></ion-input>
         </ion-item>
         <ion-item fill="solid" class="ion-margin-bottom">
@@ -89,15 +81,15 @@
             >Tu contraseña debe tener mas de 6 caracteres</ion-note
           >
         </ion-item>
-
-        <ion-button
-          type="button"
-          expand="block"
-          color="secondary"
-          (click)="register()"
-          >Crear Cuenta</ion-button
-        >
-      </form>
-    </ng-template>
+        <div class="FilaDeBotones">
+          <ion-button (click)="mostrarFormularioCrearCuenta()" color="primary">
+            Volver
+          </ion-button>
+          <ion-button color="secondary" (click)="addUsuarioAFirestoreYAuth()"
+            >Crear Cuenta</ion-button
+          >
+        </div>
+      </ng-template>
+    </form>
   </div>
 </ion-content>

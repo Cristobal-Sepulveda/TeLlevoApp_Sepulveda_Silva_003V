@@ -6,23 +6,26 @@ import { AuthService } from '../../services/auth.service';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { Geolocation } from '@capacitor/geolocation';
 import { IonModal } from '@ionic/angular';
+import { FirestoreService } from '../../services/firestore.service';
 import {
   ServicedatosService,
   Usuario,
 } from 'src/app/services/servicesdatos.service';
 import { AppComponent } from 'src/app/app.component';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
-  profile = null;
+  username = null;
   newUsuario: Usuario = <Usuario>{};
   constructor(
     private menuController: MenuController,
     private storageService: ServicedatosService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private firestoreService: FirestoreService
   ) {}
 
   @ViewChild('map') mapView: ElementRef;
@@ -63,14 +66,11 @@ export class InicioPage implements OnInit {
   ionViewDidLeave() {
     CapacitorGoogleMaps.close();
   }
-  onClick = () => {
-    let Usuarios = this.storageService.getUsuarios().then((res) => {
-      console.log(res[0]);
-      this.profile = res;
-    });
-  };
 
   ngOnInit() {
+    this.firestoreService.getUserProfile().then((username) => {
+      this.username = username;
+    });
     this.appComponent.showTabs = true;
   }
 }

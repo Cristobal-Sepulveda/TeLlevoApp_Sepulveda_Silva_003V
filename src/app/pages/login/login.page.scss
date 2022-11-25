@@ -21,3 +21,12 @@
 #FormTitle {
   text-align: center;
 }
+
+.FilaDeBotones {
+  display: flex;
+  width: 100%;
+}
+
+.FilaDeBotones ion-button {
+  width: 50%;
+}
