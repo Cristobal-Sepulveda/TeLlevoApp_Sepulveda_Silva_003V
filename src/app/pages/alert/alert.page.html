@@ -1,31 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="mostrarMenu()">
-        <ion-icon slot="start" name="menu-outline" color="primary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>alert</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-button (click)="Saludo()" expand="full" fill="outline" shape="round">
-    Saludo
-  </ion-button>
-
-  <ion-button (click)="Confirma()" expand="full" fill="outline" shape="round">
-    Confirma?
-  </ion-button>
-
-  <p>{{ handlerMessage }}</p>
-  <p>{{ roleMessage }}</p>
-
-  <ion-button (click)="Inputs()" expand="full" fill="outline" shape="round">
-    Ingrese sus datos
-  </ion-button>
-</ion-content> -->
-
 <ion-header>
   <ion-toolbar style="--background: #012c56">
     <ion-buttons slot="start">
@@ -47,20 +19,48 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background: black">
-  <div>
-    <ion-item>
-      <ion-label>Marca Vehiculo: </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Tipo Vehiculo: </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Patente: </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pasajeros: </ion-label>
-    </ion-item>
+<ion-content style="--background: white">
+  <div id="Container">
+    <form [formGroup]="form_inputs" (ngSubmit)="login()">
+      <!-- Contenedor del formulario -->
+      <div *ngIf="esConductor;then content else other_content"></div>
+      <ng-template #content>
+        <!-- Input del formulario -->
+        <ion-item style="--background: #012c56" class="ion-margin-bottom">
+          <ion-input
+            type="text"
+            placeholder="Tipo Vehiculo: "
+            formControlName="tipo_vehiculo"
+          ></ion-input>
+        </ion-item>
+        <!-- Input del formulario -->
+        <ion-item style="--background: #012c56" class="ion-margin-bottom">
+          <ion-input
+            type="text"
+            placeholder="Patente: "
+            formControlName="patente"
+          ></ion-input>
+        </ion-item>
+        <!-- Input del formulario -->
+        <ion-item style="--background: #012c56" class="ion-margin-bottom">
+          <ion-input
+            type="number"
+            placeholder="Pasajeros: "
+            formControlName="pasajeros"
+          ></ion-input>
+        </ion-item>
+        <!-- Botones del formulario -->
+        <div class="FilaDeBotones">
+          <ion-button (click)="volver()" color="warning">Volver</ion-button>
+          <ion-button
+            id="BotonCambiar"
+            color="warning"
+            (click)="agregar_usuario_como_conductor()"
+            ><ion-text> Pasar a conductor </ion-text></ion-button
+          >
+        </div>
+      </ng-template>
+      <ng-template #other_content> <div></div></ng-template>
+    </form>
   </div>
-  <ion-button (click)="showToast()" expand="block">Agregar Datos </ion-button>
 </ion-content>
