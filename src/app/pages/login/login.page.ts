@@ -31,12 +31,6 @@ export class LoginPage implements OnInit {
     private storageService: ServicedatosService
   ) {}
 
-  // addUsuario() {
-  //   this.newUsuario.modified = Date.now();
-  //   this.newUsuario.user = this.credentials.value;
-  //   this.storageService.addUsuario(this.newUsuario);
-  // }
-
   async addUsuarioAFirestoreYAuth() {
     const loading = await this.loadingController.create();
     await loading.present();
@@ -53,12 +47,6 @@ export class LoginPage implements OnInit {
       this.showAlert('Registration failed', 'Please try again!');
     }
   }
-
-  // updateUsuario(usuario: Usuario) {
-  //   usuario.user = `UPDATED: ${usuario.user}`;
-  //   usuario.modified = Date.now();
-  //   this.storageService.updateUsuario(usuario);
-  // }
 
   get email() {
     return this.credentials.get('email');
@@ -108,9 +96,16 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
+  refreshPage() {
+    if (this.appComponent.justLogged == true) {
+      this.appComponent.justLogged = false;
+      window.location.reload();
+    }
+  }
   ngOnInit() {
     console.log('login');
     this.appComponent.showTabs = false;
+    this.refreshPage();
     this.credentials = this.fb.group({
       nombre: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],

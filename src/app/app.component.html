@@ -1,6 +1,7 @@
 <ion-app class="AppContainer">
   <ion-router-outlet id="main"></ion-router-outlet>
 
+  <!-- tabs -->
   <ion-tabs *ngIf="showTabs">
     <ion-tab-bar
       slot="bottom"
@@ -21,6 +22,8 @@
     </ion-tab-bar>
   </ion-tabs>
 
+  <!-- Modal -->
+  <!-- Variables de modal -->
   <ion-modal
     id="PerfilModal"
     [isOpen]="isModalOpen"
@@ -32,6 +35,7 @@
     [enterAnimation]="enterAnimation"
     [leaveAnimation]="leaveAnimation"
   >
+    <!-- Layout Modal -->
     <ng-template>
       <ion-header>
         <ion-toolbar style="--background: #012c56">
@@ -51,6 +55,8 @@
       <ion-content style="--background: lightgray"> </ion-content>
     </ng-template>
   </ion-modal>
+
+  <!-- sidebar menu -->
   <ion-menu class="TopBar" contentId="main" menuId="first" side="start">
     <ion-content style="--background: #012c56">
       <ion-header>

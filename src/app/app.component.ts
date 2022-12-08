@@ -22,11 +22,7 @@ export class AppComponent {
     private menuController: MenuController,
     private router: Router,
     private animationCtrl: AnimationController
-  ) {
-    // CapacitorGoogleMaps.initialize({
-    //   key: environment.mapsKey,
-    // });
-  }
+  ) {}
 
   componentes: Componente[] = [
     {
@@ -50,6 +46,8 @@ export class AppComponent {
   @ViewChild(IonTabBar) tabbar: IonTabBar;
   isModalOpen = false;
   showTabs = false;
+  justLogged = false;
+  ngOnInit() {}
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -63,8 +61,8 @@ export class AppComponent {
     try {
       console.log('hola');
       this.isModalOpen = false;
-      // this.showTabs = false;
       await this.authService.logout();
+      this.justLogged = true;
       this.router.navigateByUrl('', { replaceUrl: true });
     } catch (e) {
       console.log(e.message);
@@ -98,6 +96,4 @@ export class AppComponent {
   leaveAnimation = (baseEl: HTMLElement) => {
     return this.enterAnimation(baseEl).direction('reverse');
   };
-
-  ngOnInit() {}
 }
