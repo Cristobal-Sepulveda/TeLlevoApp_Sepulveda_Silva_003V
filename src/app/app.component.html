@@ -57,29 +57,58 @@
   </ion-modal>
 
   <!-- sidebar menu -->
-  <ion-menu class="TopBar" contentId="main" menuId="first" side="start">
-    <ion-content style="--background: #012c56">
-      <ion-header>
-        <ion-toolbar class="Toolbar">
-          <ion-title class="ion-text-center" color="warning"
-            >Funciones</ion-title
-          >
-        </ion-toolbar>
-      </ion-header>
-      <ion-list class="ion-no-padding">
-        <ion-menu-toggle *ngFor="let c of componentes">
-          <ion-item
-            [routerLink]="c.redirecTo"
-            detail="true"
-            style="--background: #012c56"
-          >
-            <ion-icon slot="start" [name]="c.icon" color="warning"></ion-icon>
-            <ion-text color="warning">
-              {{ c.name }}
-            </ion-text>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+  <!-- Si el usuario no es conductor -->
+  <div *ngIf="showMenuPasajero; then content; else other_content"></div>
+  <ng-template #content>
+    <ion-menu class="TopBar" contentId="main" menuId="first" side="start">
+      <ion-content style="--background: #012c56">
+        <ion-header>
+          <ion-toolbar class="Toolbar">
+            <ion-title class="ion-text-center" color="warning">asd</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-list class="ion-no-padding">
+          <ion-menu-toggle *ngFor="let c of componentes">
+            <ion-item
+              [routerLink]="c.redirecTo"
+              detail="true"
+              style="--background: #012c56"
+            >
+              <ion-icon slot="start" [name]="c.icon" color="warning"></ion-icon>
+              <ion-text color="warning">
+                {{ c.name }}
+              </ion-text>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+  </ng-template>
+  <ng-template #other_content>
+    <ion-menu class="TopBar" contentId="main" menuId="first" side="start">
+      <ion-content style="--background: #012c56">
+        <ion-header>
+          <ion-toolbar class="Toolbar">
+            <ion-title class="ion-text-center" color="warning"
+              >Funciones</ion-title
+            >
+          </ion-toolbar>
+        </ion-header>
+        <ion-list class="ion-no-padding">
+          <ion-menu-toggle *ngFor="let c of componentes">
+            <ion-item
+              [routerLink]="c.redirecTo"
+              detail="true"
+              style="--background: #012c56"
+            >
+              <ion-icon slot="start" [name]="c.icon" color="warning"></ion-icon>
+              <ion-text color="warning">
+                {{ c.name }}
+              </ion-text>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+  </ng-template>
 </ion-app>

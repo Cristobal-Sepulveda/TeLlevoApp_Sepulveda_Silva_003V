@@ -4,13 +4,22 @@ import { AuthService } from './services/auth.service';
 import { IonModal, IonTabBar } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
+import {
+  doc,
+  Firestore,
+  setDoc,
+  getDoc,
+  updateDoc,
+  getFirestore,
+} from '@angular/fire/firestore';
+import { Storage } from '@angular/fire/storage';
+import { FirestoreService } from './services/firestore.service';
 
 interface Componente {
   icon: string;
   name: string;
   redirecTo: string;
 }
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,10 +27,11 @@ interface Componente {
 })
 export class AppComponent {
   constructor(
-    private authService: AuthService,
     private menuController: MenuController,
     private router: Router,
-    private animationCtrl: AnimationController
+    private animationCtrl: AnimationController,
+    private authService: AuthService,
+    private firestoreService: FirestoreService
   ) {}
 
   componentes: Componente[] = [
@@ -47,7 +57,11 @@ export class AppComponent {
   isModalOpen = false;
   showTabs = false;
   justLogged = false;
-  ngOnInit() {}
+  showMenuPasajero = true;
+
+  ngOnInit() {
+    console.log('app component');
+  }
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -59,7 +73,6 @@ export class AppComponent {
 
   async logout() {
     try {
-      console.log('hola');
       this.isModalOpen = false;
       await this.authService.logout();
       this.justLogged = true;

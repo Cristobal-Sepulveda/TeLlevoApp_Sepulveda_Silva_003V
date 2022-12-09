@@ -42,6 +42,7 @@ export class ServicedatosService {
       }
     });
   }
+
   async updateUsuario(usuario: Usuario): Promise<any> {
     return this.storage.get(USERS_KEYS).then((usuarios: Usuario[]) => {
       if (!usuarios || usuarios.length === 0) {

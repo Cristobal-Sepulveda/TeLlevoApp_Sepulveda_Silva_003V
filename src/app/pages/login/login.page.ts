@@ -48,6 +48,15 @@ export class LoginPage implements OnInit {
     }
   }
 
+  async showAlert(header, message) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
   get email() {
     return this.credentials.get('email');
   }
@@ -59,18 +68,6 @@ export class LoginPage implements OnInit {
   mostrarFormularioCrearCuenta = () => {
     this.showLoginForm = !this.showLoginForm;
   };
-
-  async register() {
-    const loading = await this.loadingController.create();
-    await loading.present();
-    const user = await this.authService.register(this.credentials.value);
-    await loading.dismiss();
-    if (user) {
-      this.router.navigateByUrl('/inicio', { replaceUrl: true });
-    } else {
-      this.showAlert('Registration failed', 'Please try again!');
-    }
-  }
 
   async login() {
     const loading = await this.loadingController.create();
@@ -87,23 +84,14 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async showAlert(header, message) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
   refreshPage() {
     if (this.appComponent.justLogged == true) {
       this.appComponent.justLogged = false;
       window.location.reload();
     }
   }
+
   ngOnInit() {
-    console.log('login');
     this.appComponent.showTabs = false;
     this.refreshPage();
     this.credentials = this.fb.group({
