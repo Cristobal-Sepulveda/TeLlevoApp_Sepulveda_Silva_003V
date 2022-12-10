@@ -57,7 +57,6 @@ export class AppComponent {
   isModalOpen = false;
   showTabs = false;
   justLogged = false;
-  showMenuPasajero = true;
 
   ngOnInit() {
     console.log('app component');

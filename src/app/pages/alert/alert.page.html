@@ -1,5 +1,8 @@
+<!-- Header -->
 <ion-header>
+  <!-- Barra superior -->
   <ion-toolbar style="--background: #012c56">
+    <!--  Volver -->
     <ion-buttons slot="start">
       <ion-back-button
         defaultHref="/"
@@ -7,10 +10,13 @@
         color="warning"
       ></ion-back-button>
     </ion-buttons>
+
+    <!-- Texto en medio -->
     <ion-title class="ion-text-center" style="color: lightgray"
-      >Registrarse como conductor</ion-title
+      >Iniciar viaje</ion-title
     >
-    <!-- <ion-button id="open-modal" expand="block">Open</ion-button> -->
+
+    <!-- Boton opciones -->
     <ion-buttons slot="end">
       <ion-button color="warning">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
@@ -19,48 +25,34 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- Contenido -->
 <ion-content style="--background: white">
   <div id="Container">
+    <!-- Formulario -->
     <form [formGroup]="form_inputs" (ngSubmit)="login()">
-      <!-- Contenedor del formulario -->
-      <div *ngIf="esConductor;then content else other_content"></div>
-      <ng-template #content>
-        <!-- Input del formulario -->
-        <ion-item style="--background: #012c56" class="ion-margin-bottom">
-          <ion-input
-            type="text"
-            placeholder="Tipo Vehiculo: "
-            formControlName="tipo_vehiculo"
-          ></ion-input>
-        </ion-item>
-        <!-- Input del formulario -->
-        <ion-item style="--background: #012c56" class="ion-margin-bottom">
-          <ion-input
-            type="text"
-            placeholder="Patente: "
-            formControlName="patente"
-          ></ion-input>
-        </ion-item>
-        <!-- Input del formulario -->
-        <ion-item style="--background: #012c56" class="ion-margin-bottom">
-          <ion-input
-            type="number"
-            placeholder="Pasajeros: "
-            formControlName="pasajeros"
-          ></ion-input>
-        </ion-item>
-        <!-- Botones del formulario -->
-        <div class="FilaDeBotones">
-          <ion-button (click)="volver()" color="warning">Volver</ion-button>
-          <ion-button
-            id="BotonCambiar"
-            color="warning"
-            (click)="editar_usuario_a_conductor()"
-            ><ion-text> Pasar a conductor </ion-text></ion-button
-          >
-        </div>
-      </ng-template>
-      <ng-template #other_content> <div></div></ng-template>
+      <!-- Input del formulario: Pa -->
+      <ion-item style="--background: #012c56" class="ion-margin-bottom">
+        <ion-input
+          type="text"
+          placeholder="Patente: "
+          formControlName="patente"
+        ></ion-input>
+      </ion-item>
+      <!-- Input del formulario -->
+      <ion-item style="--background: #012c56" class="ion-margin-bottom">
+        <ion-input
+          type="number"
+          placeholder="Pasajeros: "
+          formControlName="pasajeros"
+        ></ion-input>
+      </ion-item>
+      <!-- Botones del formulario -->
+      <div class="FilaDeBotones">
+        <ion-button (click)="volver()" color="warning">Volver</ion-button>
+        <ion-button id="BotonCambiar" color="warning" (click)="ir_a_mapa()"
+          ><ion-text>Siguiente</ion-text></ion-button
+        >
+      </div>
     </form>
   </div>
 </ion-content>
