@@ -18,7 +18,7 @@ import { FirestoreService } from './services/firestore.service';
 interface Componente {
   icon: string;
   name: string;
-  redirecTo: string;
+  // redirecTo: string;
 }
 @Component({
   selector: 'app-root',
@@ -33,22 +33,17 @@ export class AppComponent {
     private authService: AuthService,
     private firestoreService: FirestoreService
   ) {}
-
   componentes: Componente[] = [
     {
-      icon: 'map-outline',
-      name: 'Pantalla Principal',
-      redirecTo: '/inicio',
-    },
-    {
-      icon: 'car-sport-outline',
-      name: 'Registrarse como conductor',
-      redirecTo: '/alert',
+      icon: 'watch',
+      name: 'futura funcionalidad',
+      //name: '',
+      //redirecTo: '/alert',
     },
     {
       icon: 'locate-outline',
-      name: 'Ver Vehículos Disponibles',
-      redirecTo: '/card',
+      name: 'futura funcionalidad',
+      //redirecTo: '/card',
     },
   ];
 
@@ -57,6 +52,7 @@ export class AppComponent {
   isModalOpen = false;
   showTabs = false;
   justLogged = false;
+  viaje = {};
 
   ngOnInit() {
     console.log('app component');

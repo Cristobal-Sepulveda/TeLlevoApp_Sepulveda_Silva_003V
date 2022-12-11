@@ -18,15 +18,17 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
-  username = null;
-  newUsuario: Usuario = <Usuario>{};
-
   constructor(
     private menuController: MenuController,
     private storageService: ServicedatosService,
     private appComponent: AppComponent,
     private firestoreService: FirestoreService
   ) {}
+  username = null;
+  newUsuario: Usuario = <Usuario>{};
+  setOpen(cerrar) {
+    this.appComponent.setOpen(cerrar);
+  }
 
   @ViewChild('map') mapView: ElementRef;
   @ViewChild(IonModal) modal: IonModal;

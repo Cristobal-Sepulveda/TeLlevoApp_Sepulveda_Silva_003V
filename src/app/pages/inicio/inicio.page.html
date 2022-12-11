@@ -5,10 +5,9 @@
         <ion-icon slot="start" name="menu-outline" color="warning"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center" style="color: lightgray"
-      >Inicio</ion-title
-    >
-    <ion-buttons slot="end">
+    <ion-title class="ion-text-center" style="color: lightgray"></ion-title>
+    <!-- Boton opciones -->
+    <ion-buttons slot="end" (click)="setOpen(true)">
       <ion-button color="warning">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>

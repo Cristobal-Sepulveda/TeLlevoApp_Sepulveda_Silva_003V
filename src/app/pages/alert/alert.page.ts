@@ -23,6 +23,10 @@ export class AlertPage implements OnInit {
     private appComponent: AppComponent
   ) {}
 
+  setOpen(cerrar) {
+    this.appComponent.setOpen(cerrar);
+  }
+
   mostrarMenu() {
     this.menuController.open('first');
   }

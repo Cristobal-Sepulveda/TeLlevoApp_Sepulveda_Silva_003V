@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar style="--background: #012c56">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        text=""
+        color="warning"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" style="color: lightgray"
+      >Destino</ion-title
+    >
+    <!-- Boton opciones -->
+    <ion-buttons slot="end" (click)="setOpen(true)">
+      <ion-button color="warning">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="Container">
+    <capacitor-google-map #mapa></capacitor-google-map>
+  </div>
+</ion-content>

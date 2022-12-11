@@ -7,17 +7,14 @@
       slot="bottom"
       style="border-radius: 5px; --background: #012c56"
     >
+      <!-- <ion-tab-button (click)="setOpen(true)"> -->
+      <ion-tab-button tab="alert">
+        <ion-icon name="car-sport" color="warning"></ion-icon>
+        <ion-label color="warning">Iniciar</ion-label>
+      </ion-tab-button>
       <ion-tab-button tab="card">
-        <ion-icon name="calendar" color="warning"></ion-icon>
-        <ion-label color="warning">Agendar</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="action-sheet">
-        <ion-icon name="notifications" color="warning"></ion-icon>
-        <ion-label color="warning">Notificaciones</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="setOpen(true)">
-        <ion-icon name="person" color="warning"></ion-icon>
-        <ion-label color="warning">Perfil</ion-label>
+        <ion-icon name="chatbubbles" color="warning"></ion-icon>
+        <ion-label color="warning">Chat</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
@@ -56,21 +53,22 @@
     </ng-template>
   </ion-modal>
 
-  <!-- sidebar menu -->
+  <!-- hamburger menu -->
   <ion-menu class="TopBar" contentId="main" menuId="first" side="start">
     <ion-content style="--background: #012c56">
       <ion-header>
         <ion-toolbar class="Toolbar">
           <ion-title class="ion-text-center" color="warning"
-            >Funciones</ion-title
+            >Futuras funcionalidades</ion-title
           >
         </ion-toolbar>
       </ion-header>
       <ion-list class="ion-no-padding">
+        <!-- detail="true"  AGREGA EL BOTON flecha derecha a los items en sidebarmenu-->
         <ion-menu-toggle *ngFor="let c of componentes">
           <ion-item
-            [routerLink]="c.redirecTo"
             detail="true"
+            [routerLink]="c.redirecTo"
             style="--background: #012c56"
           >
             <ion-icon slot="start" [name]="c.icon" color="warning"></ion-icon>

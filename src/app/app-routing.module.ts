@@ -34,14 +34,14 @@ const routes: Routes = [
       import('./pages/card/card.module').then((m) => m.CardPageModule),
   },
   {
-    path: 'inputs',
-    loadChildren: () =>
-      import('./pages/inputs/inputs.module').then((m) => m.InputsPageModule),
-  },
-  {
     path: 'login',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginPageModule),
+  },
+  {
+    path: 'mapa',
+    loadChildren: () =>
+      import('./pages/mapa/mapa.module').then((m) => m.MapaPageModule),
   },
 ];
 
