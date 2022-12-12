@@ -36,6 +36,7 @@ export class AlertPage implements OnInit {
   }
 
   ir_a_mapa() {
+    //asd
     this.router.navigateByUrl('/mapa', { replaceUrl: true });
   }
 
