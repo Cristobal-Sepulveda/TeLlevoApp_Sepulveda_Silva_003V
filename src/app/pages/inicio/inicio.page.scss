@@ -1,13 +1,14 @@
-#map {
-  height: 95%;
+#Container {
+  height: 93%;
+  width: 100%;
+}
+h1 {
+  color: black;
+}
+
+li {
   background-color: lightgray;
-}
-#parrafo {
-  text-align: center;
-}
-#PerfilModal {
-  padding: 30px;
-  --border-radius: 10px;
-  height: 60%;
-  margin-top: 25%;
+  width: 90%;
+  color: black;
+  padding: 20px;
 }

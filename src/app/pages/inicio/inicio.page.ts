@@ -26,6 +26,7 @@ export class InicioPage implements OnInit {
   ) {}
   username = null;
   newUsuario: Usuario = <Usuario>{};
+  viajesADesplegar = [];
   setOpen(cerrar) {
     this.appComponent.setOpen(cerrar);
   }
@@ -40,10 +41,16 @@ export class InicioPage implements OnInit {
     this.menuController.open('first');
   }
 
-  ngOnInit() {
-    this.firestoreService.getUserProfile().then((username) => {
-      this.username = username;
+  async renderizarViajes() {
+    const viajesEnFirestore =
+      await this.firestoreService.obtenerViajesDesdeFirestore();
+    viajesEnFirestore.forEach((element) => {
+      console.log(element.data());
+      this.viajesADesplegar.push(element.data());
     });
+  }
+  ngOnInit() {
+    this.renderizarViajes();
     this.appComponent.showTabs = true;
   }
 }

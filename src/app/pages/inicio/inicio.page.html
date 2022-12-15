@@ -16,10 +16,14 @@
 </ion-header>
 
 <ion-content style="--background: white">
-  <div *ngIf="showRealScreen;then content else other_content"></div>
-  <ng-template #content>
-    <h1 class="ion-text-center">Bienvenido {{username}}</h1>
-  </ng-template>
-  <ng-template #otherContent>other_content</ng-template>
-  <!-- <div id="map"></div> -->
+  <div id="Container">
+    <h1 class="ion-text-center">Viajes</h1>
+    <ul>
+      <li *ngFor="let viaje of viajesADesplegar">
+        <div><ion-text> {{ viaje.title }} </ion-text></div>
+        <div><ion-text> {{ viaje.patente }} </ion-text></div>
+        <div><ion-text> {{ viaje.pasajeros }} </ion-text></div>
+      </li>
+    </ul>
+  </div>
 </ion-content>

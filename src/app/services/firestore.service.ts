@@ -5,11 +5,11 @@ import {
   Firestore,
   setDoc,
   getDoc,
+  getDocs,
   updateDoc,
   getFirestore,
+  collection,
 } from '@angular/fire/firestore';
-import { Storage } from '@angular/fire/storage';
-import { time } from 'console';
 
 /** FIRESTORE.SERVICE.TS */
 @Injectable({
@@ -52,7 +52,34 @@ export class FirestoreService {
       return true;
     } catch (e) {
       console.log(e.message);
-      return null;
+      return;
+    }
+  }
+
+  async subirViajeAFirestore(viaje) {
+    try {
+      console.log(viaje);
+      const user = this.auth.currentUser;
+      const userDocRef = doc(this.firestore, `Viajes/`, user.uid);
+      await setDoc(userDocRef, {
+        patente: viaje.patente,
+        pasajeros: viaje.pasajeros,
+        hora_de_salida: viaje.hora_de_salida,
+        title: viaje.title,
+      });
+    } catch (e) {
+      console.log(e.message);
+      return;
+    }
+  }
+
+  async obtenerViajesDesdeFirestore() {
+    try {
+      const colRef = collection(this.db, 'Viajes');
+      const docsSnap = await getDocs(colRef);
+      return docsSnap;
+    } catch (e) {
+      console.log(e.message);
     }
   }
 }

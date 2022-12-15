@@ -27,7 +27,7 @@
 <ion-content style="--background: white">
   <div id="Container">
     <!-- Formulario -->
-    <form [formGroup]="form_inputs" (ngSubmit)="login()">
+    <form [formGroup]="form_inputs" (ngSubmit)="cargarViaje()">
       <!-- Input del formulario:  -->
       <ion-item style="--background: #012c56" class="ion-margin-bottom">
         <ion-input
@@ -41,7 +41,7 @@
         <ion-input
           type="text"
           placeholder="Hora de Salida "
-          formControlName="hora de salida"
+          formControlName="hora_de_salida"
         ></ion-input>
       </ion-item>
       <!-- Input del formulario -->
@@ -55,9 +55,7 @@
       <!-- Botones del formulario -->
       <div class="FilaDeBotones">
         <ion-button (click)="volver()" color="warning">Volver</ion-button>
-        <ion-button id="BotonCambiar" color="warning" (click)="ir_a_mapa()"
-          ><ion-text>Siguiente</ion-text></ion-button
-        >
+        <ion-button color="warning" type="submit">Siguiente</ion-button>
       </div>
     </form>
   </div>

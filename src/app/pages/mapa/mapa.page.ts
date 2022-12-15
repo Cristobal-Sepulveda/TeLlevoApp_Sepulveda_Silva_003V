@@ -1,14 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
-import {
-  MenuController,
-  ToastController,
-  IonList,
-  AlertController,
-} from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { AppComponent } from 'src/app/app.component';
 import { Router } from '@angular/router';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-mapa',
@@ -22,7 +19,9 @@ export class MapaPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private appComponent: AppComponent,
-    private router: Router
+    private router: Router,
+    private firestoreService: FirestoreService,
+    private authService: AuthService
   ) {}
 
   ionViewDidEnter() {
@@ -57,8 +56,7 @@ export class MapaPage implements OnInit {
 
   async addListeners() {
     await this.map.setOnMarkerClickListener(async (marker) => {
-      this.confirmarViaje();
-      //console.log(marker);
+      this.confirmarViaje(marker);
     });
   }
 
@@ -125,14 +123,16 @@ export class MapaPage implements OnInit {
     await this.map.addMarkers(markers);
   }
 
-  async confirmarViaje() {
+  async confirmarViaje(marker) {
     const alert = await this.alertController.create({
       header: '¿Programar viaje en este destino?',
       buttons: [
         {
           text: 'Confirmar',
           role: 'confirm',
-          handler: async () => {
+          handler: () => {
+            this.appComponent.viaje.title = marker.title;
+            this.firestoreService.subirViajeAFirestore(this.appComponent.viaje);
             this.router.navigateByUrl('/inicio', { replaceUrl: true });
           },
         },

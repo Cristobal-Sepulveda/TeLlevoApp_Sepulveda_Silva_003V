@@ -4,15 +4,6 @@ import { AuthService } from './services/auth.service';
 import { IonModal, IonTabBar } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
-import {
-  doc,
-  Firestore,
-  setDoc,
-  getDoc,
-  updateDoc,
-  getFirestore,
-} from '@angular/fire/firestore';
-import { Storage } from '@angular/fire/storage';
 import { FirestoreService } from './services/firestore.service';
 
 interface Componente {
@@ -52,7 +43,12 @@ export class AppComponent {
   isModalOpen = false;
   showTabs = false;
   justLogged = false;
-  viaje = {};
+  viaje = {
+    patente: String,
+    hora_de_salida: String,
+    pasajeros: String,
+    title: String,
+  };
 
   ngOnInit() {
     console.log('app component');

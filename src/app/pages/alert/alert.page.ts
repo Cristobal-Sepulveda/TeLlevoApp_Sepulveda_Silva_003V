@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController, IonList } from '@ionic/angular';
 import { AppComponent } from 'src/app/app.component';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-alert',
@@ -17,6 +18,7 @@ export class AlertPage implements OnInit {
   roleMessage = '';
 
   constructor(
+    private alertController: AlertController,
     private fb: FormBuilder,
     private menuController: MenuController,
     private router: Router,
@@ -35,15 +37,41 @@ export class AlertPage implements OnInit {
     this.router.navigateByUrl('/inicio', { replaceUrl: true });
   }
 
-  ir_a_mapa() {
-    //asd
+  async faltanDatos() {
+    const alert = await this.alertController.create({
+      header: 'Debe completar todos los campos',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: async () => {},
+        },
+      ],
+    });
+    await alert.present();
+    await alert.onDidDismiss();
+  }
+
+  cargarViaje() {
+    const viaje = this.form_inputs.value;
+    if (
+      viaje.patente === '' ||
+      viaje.hora_de_salida === '' ||
+      viaje.pasajeros === ''
+    ) {
+      return this.faltanDatos();
+    }
+
+    this.appComponent.viaje.patente = viaje.patente;
+    this.appComponent.viaje.hora_de_salida = viaje.hora_de_salida;
+    this.appComponent.viaje.pasajeros = viaje.pasajeros;
     this.router.navigateByUrl('/mapa', { replaceUrl: true });
   }
 
   ngOnInit() {
     this.form_inputs = this.fb.group({
-      tipo_vehiculo: ['', [Validators.required]],
-      patente: ['', [Validators.required, Validators.required]],
+      patente: ['', [Validators.required]],
+      hora_de_salida: ['', [Validators.required]],
       pasajeros: ['', [Validators.required, Validators.required]],
     });
   }
